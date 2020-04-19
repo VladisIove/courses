@@ -1,1 +1,1 @@
-export default GET_FAQ = 'GET_FAQ';
+export const GET_FAQ = 'GET_FAQ';
