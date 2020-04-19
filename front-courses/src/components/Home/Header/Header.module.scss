@@ -2,8 +2,18 @@
 
 .Header{
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: space-between;
+    transition: .4s ease-out;
+    justify-content: space-around;
+
+
+        & img{
+            max-width: 100%;
+            min-width: 490px;
+        }
+
+
 
     .MainWords{
         color: $black;
@@ -11,7 +21,7 @@
         margin: 0 auto;
         font-size: 3rem;
         font-weight: bold;
-        padding: 0 6em;
+        padding: 2em 6em;
     
         .MainWord{
             font-size: 4rem;
@@ -24,23 +34,31 @@
 }
 
 
+@media screen and (max-width:1390px){
+
+
+    .Header img{
+        display: none;   
+    }
+    .MainWords{
+        padding: 2em 3.5em 0 2.5em !important;
+        margin: 0 ;
+    }
+}
 
 
 
 @media screen and (max-width:767px){
 
-    .BgImg{
-        display: none;
-    }
 
     .MainWords{
-        font-size: 5.3rem !important;
+        font-size: 1.7rem !important;
         margin: 8.3rem 0 0 0 !important;
         padding: 0 0 0 1em !important;
         text-align: center;
 
         .MainWord{
-            font-size: 2rem !important;
+            font-size: 3rem !important;
             padding: 0 0 0 0;
         }
     

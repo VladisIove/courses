@@ -3,7 +3,6 @@ import Button from '../../../UI/Button/Button'
 import classes from './Header.module.scss'
 
 const Header = ()=>{
-    console.log(classes)
     return (
         <header className={classes.Header}>
             <div className={classes.MainWords}>
@@ -13,9 +12,7 @@ const Header = ()=>{
                 <Button text="Войти" link="login"/>
                 </span>
             </div>
-            <div className={classes.BgImg}>
-                <img src="https://images.unsplash.com/photo-1567176019833-b7063aa49069?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"/>
-            </div>
+            <img src="https://images.unsplash.com/photo-1567176019833-b7063aa49069?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"/>
         </header>
     )   
     

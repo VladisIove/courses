@@ -1,0 +1,2 @@
+export const GET_COURSES = 'GET_COURSES';
+export const FILTER_COURSES = 'FILTER_COURSES';

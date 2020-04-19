@@ -1,0 +1,97 @@
+@import '../../../colors.scss';
+
+.Bg{
+    .NameBlock{
+        text-align: center;
+        font-size: 4rem;
+        padding: 1em;
+    }
+
+    .Courses{
+        background-color: #fff;
+        
+        .Course{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .Img{
+                width: 50%;
+
+
+                img {
+                    display: block;
+                    max-width: 100%;
+                    max-height: 100%;
+                }
+            }
+
+
+            .Text{
+                padding: 0 8em ;
+                padding-top: 1em;
+                max-width: 50%;
+                
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                
+                
+                .Name{
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    margin-bottom: 1.5em;
+
+                }
+                .Description{
+                    font-size: 1rem;
+                    margin-bottom: 2em;
+                }
+
+                a{
+                    width:200px;
+                    padding: 1em;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:1209px){
+    .Img{
+        display: none;
+    }
+
+    .Text{
+        max-width: 90% !important;
+        margin: 1em auto;
+        border: 1px solid $light_violent_op06;
+
+        .Name{
+            padding: 0;
+            margin-bottom: 0 !important;
+        }
+        .Description{
+            padding: 0;
+            margin-bottom: 0 !important;
+        }
+        a{
+            margin-bottom: 1em;
+        }
+
+    }
+}
+
+@media screen and (max-width:667px){
+    .NameBlock{
+        text-align: center;
+        font-size:2.5rem!important; 
+        padding: 1em;
+    }
+    .Text{
+        padding: 0 2em!important;
+    }
+
+}
