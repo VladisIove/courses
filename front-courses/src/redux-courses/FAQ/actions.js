@@ -1,0 +1,1 @@
+export default GET_FAQ = 'GET_FAQ';

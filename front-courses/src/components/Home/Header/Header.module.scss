@@ -1,0 +1,52 @@
+@import '../../../colors.scss';
+
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .MainWords{
+        color: $black;
+        text-align: left;
+        margin: 0 auto;
+        font-size: 3rem;
+        font-weight: bold;
+        padding: 0 6em;
+    
+        .MainWord{
+            font-size: 4rem;
+        }
+    
+        .HeaderButtons{
+            font-size: 2rem;
+        }
+    }
+}
+
+
+
+
+
+@media screen and (max-width:767px){
+
+    .BgImg{
+        display: none;
+    }
+
+    .MainWords{
+        font-size: 5.3rem !important;
+        margin: 8.3rem 0 0 0 !important;
+        padding: 0 0 0 1em !important;
+        text-align: center;
+
+        .MainWord{
+            font-size: 2rem !important;
+            padding: 0 0 0 0;
+        }
+    
+        .HeaderButtons{
+            padding: 0 0 0 0;
+            font-size: 2rem !important;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@import '../../colors.scss';
+
+
+.BG{
+    background-color: $light_grey_06;
+    background-size: 100%;
+    position: absolute;
+}
+
+.FAQ{
+    width: 70%;
+    text-align: left;
+    margin: 0 auto;
+    padding-top: 7em;
+    background-color: #fff;
+}
+
+.Header{
+    padding: 0 2em 2em 2em;
+}
+
+.HeaderFAQ{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+
+.HeaderText{
+    padding: 0 5em;
+}
+
+.QuestionPart{
+    padding: 3em 4em 0 4em;
+}
+
+.Question{
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding-bottom: 0.5em;
+    padding-left: 2.2em;
+}
+
+.Answer{
+    padding: 0 3em 0 3em;
+}
+
+@media screen and (max-width:767px){
+    .FAQ{
+        width: 100%;
+    }
+}
