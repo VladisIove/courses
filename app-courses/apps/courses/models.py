@@ -5,8 +5,14 @@ db = Gino()
 class Course(db.Model):
     __tablename__ = 'courses'
 
-    id = db.Column()
+    id = db.Column(db.Integer(), primary_key=True)
+    name_course = db.Column(db.String())
+    description = db.Column(db.String())
+    author =  = db.Column(None, db.ForeignKey('users.id'), nullable=True)
+    date = db.Column(db.DateTime())
+    price = db.Column(db.Integer())
+    old_price = db.Column(db.Integer())
+    data_json = db.Column(db.Json()) # save id videos, files and img
 
-class Comment(db.Model):
-    __tablename__ = 'comments'
+
 

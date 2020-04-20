@@ -39,7 +39,7 @@ class RemoveView(web.View):
             return web.json_response({'error_state': DosntValidParameters.error_state, 'description': DosntValidParameters.description})
 
 
-class UpdateView(web.View):
+class EditeView(web.View):
     model = None 
 
     async def post(self,):

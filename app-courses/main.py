@@ -1,4 +1,4 @@
-import aiohttp import web
+from aiohttp import web
 from routes import setup_routes
 
 
