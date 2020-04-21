@@ -5,7 +5,7 @@ from .errors import DosntFoundQueryset, DosntValidId, DosntValidParameters
 class AllView(web.View):
     model = None 
 
-    async def get(self,):
+    async def post(self,request):
         data = await self.request.query()
         queryset = await self.model.query.gino.filter_by(**data) if len(data) else await self.model.query.gino.all()
         data = []
