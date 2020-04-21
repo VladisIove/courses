@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "command": "CREATE TABLE files( id serial PRIMARY KEY, url_img VARCHAR(220) NOT NULL);"
+    },
+    {
+        "id": 2,
+        "command": "CREATE TABLE users( id serial PRIMARY KEY, name VARCHAR(220), uuid VARCHAR(220), second_name VARCHAR(220), email VARCHAR(220), password VARCHAR(500),img_id Integer, age Integer, user_type Integer, data JSON,active Boolean, FOREIGN KEY (img_id) REFERENCES files(id));"
+    },
+    {
+        "id": 3,
+        "command": "CREATE TABLE sessions( id serial Primary KEY, user_id INTEGER, token VARCHAR(200), exxpired Boolean, FOREIGN KEY (user_id) REFERENCES users(id));"
+    },
+    {
+        "id": 4,
+        "command": "CREATE TABLE courses( id serial PRIMARY KEY, name_course VARCHAR(220), description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id));"
+    },
+    {
+        "id": 5,
+        "command": "CREATe taBLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answerr VARCHAR(1024));"
+    }
+]

@@ -1,4 +1,4 @@
-from gino import Gino 
+from gino.ext.aiohttp import Gino
 
 db = Gino()
 
@@ -6,8 +6,10 @@ class User(db.Model):
     __tablename__ = 'users'
 
     class STATE_USER:
-        Creatore = 1
-        Client = 2
+        Admin = 1
+        Creatore = 2 
+        Client = 3
+        
 
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String())
@@ -23,9 +25,9 @@ class User(db.Model):
 
     @property
     def full_name(self):
-        return '{} {}'.format(self.name self.second_name) if self.second_name else '{}'.format(self.name)
+        return '{} {}'.format(self.name, self.second_name) if self.second_name else '{}'.format(self.name)
 
-class Files(db.Model):
+class File(db.Model):
     __tablename__ = 'files'
 
     id = db.Column(db.Integer(), primary_key=True)
@@ -36,5 +38,6 @@ class Session(db.Model):
     __tablename__ = 'sessions'
 
     id = db.Column(db.Integer(), primary_key=True)
+    user = db.Column(None, db.ForeignKey('users.id'), nullable=True)
     token = db.Column(db.String())
     expired = db.Column(db.Boolean())

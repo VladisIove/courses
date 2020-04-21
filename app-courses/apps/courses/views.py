@@ -1,5 +1,7 @@
 from aiohttp import web 
-from apps-courses.classes import AllView
+from .models import Course
+from apps.users.models import File
+from apps.classes import AllView
 
 
 class CoursesView(AllView):
@@ -12,6 +14,3 @@ class CheckBoughtCourseView(web.View):
     
     async def post(self, request):
         pass 
-
-class GetBoughtCourse(AllView):
-    model = UserCourses

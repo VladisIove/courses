@@ -1,6 +1,7 @@
 from aiohttp import web
 
-from app-courses.classes import EditeView, RemoveView
+from .models import User
+from apps.classes import EditeView, RemoveView
 
 
 class LoginView(web.View):

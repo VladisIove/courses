@@ -22,7 +22,7 @@ class CreateView(web.View):
             queryset = await self.model.create(**data)
             return web.json_response({key: value for (key, value) in vars(queryset).items if not key.startswith('_')})
         except:
-            return web.json_response('error_state': DosntValidParameters.error_state, 'description': DosntValidParameters.description)
+            return web.json_response({'error_state': DosntValidParameters.error_state, 'description': DosntValidParameters.description})
 
 class RemoveView(web.View):
     model = None 
