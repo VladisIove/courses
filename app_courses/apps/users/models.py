@@ -1,6 +1,4 @@
-from gino.ext.aiohttp import Gino
-
-db = Gino()
+from apps.init_db import db
 
 class User(db.Model):
     __tablename__ = 'users'

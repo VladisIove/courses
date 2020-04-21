@@ -5,8 +5,8 @@ from .errors import DosntFoundQueryset, DosntValidId, DosntValidParameters
 class AllView(web.View):
     model = None 
 
-    async def post(self,request):
-        data = await self.request.query()
+    async def post(self):
+        data = self.request.query
         queryset = await self.model.query.gino.filter_by(**data) if len(data) else await self.model.query.gino.all()
         data = []
         for q in queryset:
@@ -27,7 +27,7 @@ class CreateView(web.View):
 class RemoveView(web.View):
     model = None 
 
-    async def post(self, request):
+    async def post(self):
         id_queryset = request.match_info.get('id', None)
         if id_queryset:
             try:

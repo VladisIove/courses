@@ -1,6 +1,5 @@
-from gino.ext.aiohttp import Gino
+from apps.init_db import db
 
-db = Gino()
 
 class Course(db.Model):
     __tablename__ = 'courses'

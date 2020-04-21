@@ -17,6 +17,6 @@
     },
     {
         "id": 5,
-        "command": "CREATe taBLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answerr VARCHAR(1024));"
+        "command": "CREATe taBLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answer VARCHAR(1024));"
     }
 ]
