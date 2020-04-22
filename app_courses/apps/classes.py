@@ -8,9 +8,13 @@ class AllView(web.View):
 
     async def post(self):
         data = await self.request.json()
-        #data = {getattr(self.model,key): value for key, value in data.items()}
-        data = {getattr(self.model, key): value for key, value in data.items()}
-        queryset = await self.model.query.where(**data).gino.all() if len(data) else await self.model.query.gino.all()
+        if len(data):
+            q = self.model.query
+            for key, value in data.items():
+                q = q.where(getattr(self.model, key) == value)
+            queryset = await q.gino.all()
+        else :
+            queryset = await self.model.query.gino.all()
         data = []
         for q in queryset:
             data.append(q.to_dict())
