@@ -29,7 +29,10 @@ class File(db.Model):
     __tablename__ = 'files'
 
     id = db.Column(db.Integer(), primary_key=True)
-    url_img = db.Column(db.String())
+    url = db.Column(db.String())
+
+    def save_file(self, file, file_format):
+        pass
 
 
 class Session(db.Model):

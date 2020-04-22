@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "command": "CREATE TABLE files( id serial PRIMARY KEY, url_img VARCHAR(220) NOT NULL);"
+        "command": "CREATE TABLE files( id serial PRIMARY KEY, url VARCHAR(220) NOT NULL);"
     },
     {
         "id": 2,
