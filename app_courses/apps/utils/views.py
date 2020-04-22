@@ -1,15 +1,15 @@
 from aiohttp import web 
-from apps.classes import AllView
+from apps.classes import AllView, CreateView, EditeView, RemoveView
 from .models import FAQ 
 
 class AllFAQView(AllView):
     model = FAQ
 
-class CreateFAQView(web.View):
+class CreateFAQView(CreateView):
     model = FAQ 
 
-class EditeFAQView(web.View):
+class EditeFAQView(EditeView):
     model = FAQ 
 
-class RemoveFAQView(web.View):
+class RemoveFAQView(RemoveView):
     model = FAQ
