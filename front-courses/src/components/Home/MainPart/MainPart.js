@@ -14,7 +14,7 @@ const MainPart = (props) => (
                             <div className={classes.Text}>
                                 <p className={classes.Name}>{e.nameCourse}</p>
                                 <p className={classes.Description}>{e.description}</p>
-                                <Button text="Подробнее" link="description"/>
+                                <Button text="Подробнее"  link={['course', e.id].join('/')}/>
                             </div>
                             <div className={classes.Img}>
                                 <img src={e.imgHref}/>
@@ -30,7 +30,7 @@ const MainPart = (props) => (
                         <div className={classes.Text}>
                             <p className={classes.Name}>{e.nameCourse}</p>
                             <p className={classes.Description}>{e.description}</p>
-                            <Button text="Подробнее" link="description"/>
+                            <Button text="Подробнее" link={['course', e.id].join('/')} />
                         </div>
                     </div>
                 )

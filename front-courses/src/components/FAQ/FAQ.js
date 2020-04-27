@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import classes from './FAQ.module.scss';
-import { GET_FAQ } from '../../redux-courses/FAQ/actions';
+import { GET_FAQ, setYear } from '../../redux-courses/FAQ/actions';
 
 
 
 const FAQ = (props) =>{
+
     return  (
         <div className={classes.BG}>
             <div className={classes.FAQ}>
@@ -27,4 +28,10 @@ const FAQ = (props) =>{
     )
 }
 
-export default connect(state=>({faqs: state.reduserFAQ}), dispatch=>({ type: GET_FAQ }))(FAQ);
+const mapStateToProps = store => {
+    return {
+        faqs: store.reduserFAQ
+    }
+}
+  
+export default connect(mapStateToProps)(FAQ);

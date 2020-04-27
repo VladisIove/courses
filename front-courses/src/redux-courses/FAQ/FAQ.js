@@ -35,7 +35,7 @@ const stateFAQ = [
 ]
 
 export default function reduserFAQ (FAQ=stateFAQ, action) {
-    switch (action){
+    switch (action.type){
         case GET_FAQ:
             return FAQ
         default:

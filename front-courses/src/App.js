@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import FAQ from './components/FAQ/FAQ';
+import Course from './components/Course/Course';
 import './App.css';
 
 class App extends Component{
@@ -15,6 +16,7 @@ class App extends Component{
         <Route path="/" exact>
           <Home/>
         </Route>
+        <Route path="/course/:uuid" render={(match) => (<Course path={match} />)}/>
         <Route path="/faq">
           <FAQ/>
         </Route>

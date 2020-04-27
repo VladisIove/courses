@@ -28,11 +28,11 @@ const stateCourses = [
 ]
 
 export default function Courses(courses=stateCourses, action){
-    switch(action){
+    switch(action.type){
         case GET_COURSES:
             return courses
         case FILTER_COURSES:
-            return courses
+            return courses.filter(e=>e.id==action.id)
         default:
             return courses
     }
