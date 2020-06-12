@@ -1,5 +1,6 @@
-import {connect} from 'react-redux';
 import {GET_FAQ} from './actions';
+
+const axios = require('axios').default;
 
 const stateFAQ = [
     {
@@ -37,8 +38,18 @@ const stateFAQ = [
 export default function reduserFAQ (FAQ=stateFAQ, action) {
     switch (action.type){
         case GET_FAQ:
+
             return FAQ
         default:
+            const options = {
+                method: 'POST',
+                headers: { 'Accept': 'application/json'},
+                data: {},
+                url: '/faqs',
+              };
+              axios(options).then(function (response) {
+                console.log(response);
+              });
             return FAQ
     }
 }

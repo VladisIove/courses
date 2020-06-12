@@ -13,10 +13,14 @@
     },
     {
         "id": 4,
-        "command": "CREATE TABLE courses( id serial PRIMARY KEY, name_course VARCHAR(220), description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id));"
+        "command": "CREATE TABLE courses_view( id serial PRIMARY KEY, name_course VARCHAR(220), description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id));"
     },
     {
         "id": 5,
-        "command": "CREATe taBLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answer VARCHAR(1024));"
+        "command": "CREATE TABLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answer VARCHAR(1024));"
+    },
+    {
+        "id": 6,
+        "command": "CREATE TABLE courses_video(id serial PRIMARY KEY, name  VARCHAR(220), description VARCHAR(1024),course_view_id INTEGER, video_id INTEGER, FOREIGN KEY (video_id) REFERENCES files(id), FOREIGN KEY (course_view_id) REFERENCES courses_view(id)) "
     }
 ]

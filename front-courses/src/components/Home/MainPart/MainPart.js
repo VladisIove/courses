@@ -17,7 +17,7 @@ const MainPart = (props) => (
                                 <Button text="Подробнее"  link={['course', e.id].join('/')}/>
                             </div>
                             <div className={classes.Img}>
-                                <img src={e.imgHref}/>
+                                <img src={e.imgHref} alt=""/>
                             </div>
                         </div>
                     )
@@ -25,7 +25,7 @@ const MainPart = (props) => (
                 return (
                     <div key={e.id} className={classes.Course}>
                         <div className={classes.Img}>
-                            <img src={e.imgHref}/>
+                            <img src={e.imgHref} alt=""/>
                         </div>
                         <div className={classes.Text}>
                             <p className={classes.Name}>{e.nameCourse}</p>

@@ -32,7 +32,7 @@ export default function Courses(courses=stateCourses, action){
         case GET_COURSES:
             return courses
         case FILTER_COURSES:
-            return courses.filter(e=>e.id==action.id)
+            return courses.filter(e=>e.id===action.id)
         default:
             return courses
     }

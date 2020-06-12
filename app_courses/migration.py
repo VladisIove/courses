@@ -18,7 +18,7 @@ def migration(host, database, user, password):
         data = json.load(json_file)
         for d in data:
             if d["id"] > last_id:
-                cursor.execute(d["command"])
+                cursor.execute(d["command"])  
                 cursor.execute("INSERT INTO migrations (command) VALUES ('{}')".format(d["command"]))
                 conn.commit() 
     cursor.close()

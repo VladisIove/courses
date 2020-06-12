@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import VideoBar from './VideoBar/VideoBar';
+import VideoFrame from './VideoFrame/VideoFrame';
 import {FILTER_COURSES_FUNCT} from '../../redux-courses/Courses/actions'
 
 class Course extends Component{
@@ -12,7 +14,7 @@ class Course extends Component{
         return (   
             <div>
                 <div>
-                    <img/>
+                    <img alt="img"/>
                     <div>
 
                     </div>

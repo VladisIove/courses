@@ -1,6 +1,7 @@
 {
   "name": "front-courses",
   "version": "0.1.0",
+  "proxy": "http://0.0.0.0:8080",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",

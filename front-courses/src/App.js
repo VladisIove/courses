@@ -4,6 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import Home from './components/Home/Home';
 import FAQ from './components/FAQ/FAQ';
 import Course from './components/Course/Course';
+import Profile from './components/Profile/Profile';
 import './App.css';
 
 class App extends Component{
@@ -17,6 +18,9 @@ class App extends Component{
           <Home/>
         </Route>
         <Route path="/course/:uuid" render={(match) => (<Course path={match} />)}/>
+        <Route path="/profile">
+          <Profile/>
+        </Route>
         <Route path="/faq">
           <FAQ/>
         </Route>

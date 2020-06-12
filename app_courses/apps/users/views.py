@@ -1,7 +1,7 @@
 from aiohttp import web
 
 from .models import User
-from apps.classes import EditeView, RemoveView
+from apps.classes import EditeView, RemoveView,CreateView
 
 
 class LoginView(web.View):
@@ -28,4 +28,7 @@ class EditUserView(EditeView):
     model = User 
 
 class RemoveUserView(RemoveView):
+    model = User
+
+class CreateUserView(CreateView):
     model = User

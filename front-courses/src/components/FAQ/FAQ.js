@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import classes from './FAQ.module.scss';
-import { GET_FAQ, setYear } from '../../redux-courses/FAQ/actions';
 
 
 

@@ -1,6 +1,6 @@
 from apps.users.views import (LoginView, LogoutView, 
                         RegistrationView, AccessUserView, 
-                        EditUserView, RemoveUserView)
+                        EditUserView, RemoveUserView, CreateUserView)
 
 from apps.courses.views import AllCoursesView, RemoveCourseView, EditCourseView, CreateCourseView, AllFileView, CreateFileView, RemoveFileView, EditFileView
 from apps.utils.views import AllFAQView, CreateFAQView, EditeFAQView, RemoveFAQView
@@ -22,6 +22,7 @@ def setup_routes(app):
     app.router.add_post('/users/access_user', AccessUserView, name='access_user')
     app.router.add_post('/users/edit', EditUserView, name='edit_user')
     app.router.add_post('/users/remove', RemoveUserView, name='remove_user')
+    app.router.add_post('/users/create', CreateUserView, name='create_user')
     
     app.router.add_post('/faqs', AllFAQView, name='all_faq')
     app.router.add_post('/faqs/create', CreateFAQView, name='create_faq')

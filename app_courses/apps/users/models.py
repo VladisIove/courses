@@ -16,7 +16,7 @@ class User(db.Model):
     second_name = db.Column(db.String(), nullable=True)
     email = db.Column(db.String())
     password = db.Column(db.String())
-    img = db.Column(None, db.ForeignKey('files.id'), nullable=True)
+    img_id = db.Column(None, db.ForeignKey('files.id'), nullable=True)
     age = db.Column(db.Integer(), nullable=True)
     user_type = db.Column(db.Integer())
     data = db.Column(db.JSON()) # save bought courses

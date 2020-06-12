@@ -2,6 +2,7 @@ from aiohttp import web
 from sqlalchemy.sql import text
 from aiohttp.abc import AbstractAccessLogger
 import json
+import datetime 
 from .errors import DosntFoundQueryset, DosntValidId, DosntValidParameters
 
 class AllView(web.View):
@@ -19,7 +20,16 @@ class AllView(web.View):
         data = []
         for q in queryset:
             data.append(q.to_dict())
-        return web.json_response({'data': data})
+        try:
+            return web.json_response({'data': data})
+        except:
+            data = []
+            dict_q = {}
+            for q in queryset:
+                for key in self.model.key_dict:
+                    dict_q[key] = getattr(q, key) if type(getattr(q, key)) not in [type(datetime.datetime.now())] else str(getattr(q, key))
+                data.append(dict_q)
+            return web.json_response({'data': data})
 
 class CreateView(web.View):
     model = None
@@ -28,7 +38,13 @@ class CreateView(web.View):
         data = await self.request.json()
         try:
             queryset = await self.model.create(**data)
-            return web.json_response(queryset.to_dict())
+            try:
+                return web.json_response(queryset.to_dict())
+            except:
+                dict_q = {}
+                for key in self.model.key_dict:
+                    dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
+                return web.json_response(json.dumps(dict_q))
         except:
             return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
 
@@ -42,7 +58,13 @@ class RemoveView(web.View):
                 queryset = await self.model.get(id_queryset)
                 data_json = queryset.to_dict()
                 await queryset.delete()
-                return web.json_response(data_json)
+                try:
+                    return web.json_response(data_json)
+                except:
+                    dict_q = {}
+                    for key in self.model.key_dict:
+                        dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
+                    return web.json_response(json.dumps(dict_q))
             except self.model.DoesNotExist:
                 return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
@@ -60,7 +82,13 @@ class EditeView(web.View):
                 del data['id']
                 await self.model.update.values(**data).where(self.model.id == id_queryset).gino.status()                
                 queryset = await self.model.get(id_queryset)
-                return web.json_response(queryset.to_dict())
+                try:
+                    return web.json_response(queryset.to_dict())
+                except:
+                    dict_q = {}
+                    for key in self.model.key_dict:
+                        dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
+                    return web.json_response(json.dumps(dict_q))
             except self.model.DoesNotExist:
                 return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
