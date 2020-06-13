@@ -24,3 +24,9 @@ class CourseVideo(db.Model):
     course_view = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)
     video = db.Column(None, db.ForeignKey('files.id'), nullable=False)
 
+class BoughtCourses(db.Model):
+    __tablename__ = 'bought_courses'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(None, db.ForeignKey('users.id'), nullable=False)
+    course_id = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)

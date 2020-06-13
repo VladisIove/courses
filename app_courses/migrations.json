@@ -21,6 +21,10 @@
     },
     {
         "id": 6,
-        "command": "CREATE TABLE courses_video(id serial PRIMARY KEY, name  VARCHAR(220), description VARCHAR(1024),course_view_id INTEGER, video_id INTEGER, FOREIGN KEY (video_id) REFERENCES files(id), FOREIGN KEY (course_view_id) REFERENCES courses_view(id)) "
+        "command": "CREATE TABLE courses_video(id serial PRIMARY KEY, name  VARCHAR(220), description VARCHAR(1024),course_view_id INTEGER, video_id INTEGER, FOREIGN KEY (video_id) REFERENCES files(id), FOREIGN KEY (course_view_id) REFERENCES courses_view(id)); "
+    },
+    {
+        "id":7,
+        "command": "CREATE TABLE bought_courses(id serial PRIMARY KEY, user_id INTEGER, course_id INTEGER, FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (course_id) REFERENCES courses_view(id));"
     }
 ]
