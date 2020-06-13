@@ -1,8 +1,44 @@
 from aiohttp import web 
-from .models import CourseView, CourseVideo
+from .models import CourseView, CourseVideo, ExerciseView, TestAnswer, BoughtCourses
 from apps.users.models import File
 from apps.classes import AllView, RemoveView, EditeView, CreateView
 
+
+class AllBoughtCoursesView(AllView):
+    model = BoughtCourses
+
+class RemoveBoughtCoursesView(RemoveView):
+    model = BoughtCourses
+
+class EditBoughtCoursesView(EditeView):
+    model = BoughtCourses
+
+class CreateBoughtCoursesView(CreateView):
+    model = BoughtCourses
+
+class AllExerciseView(AllView):
+    model = ExerciseView
+
+class EditExerciseView(EditeView):
+    model = ExerciseView
+
+class CreateExerciseView(CreateView):
+    model = ExerciseView
+
+class RemoveExerciseView(RemoveView):
+    model = ExerciseView
+
+class AllTestAnswer(AllView):
+    model = TestAnswer
+
+class EditTestAnswer(EditeView):
+    model = TestAnswer
+
+class RemoveTestAnswer(RemoveView):
+    model = TestAnswer
+
+class CreateTestAnswer(CreateView):
+    model = TestAnswer
 
 class AllCoursesView(AllView):
     model = CourseView 
@@ -36,7 +72,7 @@ class RemoveFileView(RemoveView):
 
 class CreateFileView(CreateView):
     model = File
-    
+    '''
     async def post(self):
         data = self.request.json()
         if data.get('format_file', False):
@@ -46,10 +82,11 @@ class CreateFileView(CreateView):
             return web.json_response(queryset.to_dict())
         else:
             return await super().post(self)
+    '''
 
 class EditFileView(EditeView):
     model = File
-    
+    '''
     async def post(self):
         data = self.request.json()
         if data.get('format_file', False):
@@ -59,3 +96,4 @@ class EditFileView(EditeView):
             return web.json_response(queryset.to_dict())
         else:
             return await super().post(self)
+    '''

@@ -26,5 +26,13 @@
     {
         "id":7,
         "command": "CREATE TABLE bought_courses(id serial PRIMARY KEY, user_id INTEGER, course_id INTEGER, FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (course_id) REFERENCES courses_view(id));"
+    },
+    {
+        "id": 8,
+        "command": "CREATE TABLE exercises_view(id serial PRIMARY KEY, name VARCHAR(220), description VARCHAR(1024), type_exercise INTEGER, course_id INTEGER, FOREIGN KEY (course_id) REFERENCES courses_video(id));"
+    },
+    {
+        "id": 9,
+        "command": "CREATE TABLE test_answers(id serial PRIMARY KEY, text VARCHAR(1024), answer Boolean, exercise_view_id INTEGER, FOREIGN KEY (exercise_view_id) REFERENCES exercises_view(id));"
     }
 ]

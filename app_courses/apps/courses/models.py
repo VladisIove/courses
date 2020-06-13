@@ -20,8 +20,8 @@ class CourseVideo(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String())
     description = db.Column(db.String())
-    course_view = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)
-    video = db.Column(None, db.ForeignKey('files.id'), nullable=False)
+    course_view_id = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)
+    video_id = db.Column(None, db.ForeignKey('files.id'), nullable=False)
 
 class BoughtCourses(db.Model):
     __tablename__ = 'bought_courses'
@@ -29,3 +29,23 @@ class BoughtCourses(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(None, db.ForeignKey('users.id'), nullable=False)
     course_id = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)
+
+class ExerciseView(db.Model):
+    __tablename__ = 'exercises_view'
+
+    class TYPE_EXERCISE:
+        TEST = 1
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String())
+    description = db.Column(db.String())
+    type_exercise = db.Column(db.Integer())
+    course_id = db.Column(None, db.ForeignKey('courses_view.id'), nullable=False)
+
+class TestAnswer(db.Model):
+    __tablename__ = 'test_answers'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    text = db.Column(db.String())
+    answer = db.Column(db.Boolean())
+    exercise_view_id = db.Column(None, db.ForeignKey('exercises_view.id'), nullable=False)
