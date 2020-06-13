@@ -1,5 +1,5 @@
 from aiohttp import web 
-from .models import CourseView
+from .models import CourseView, CourseVideo
 from apps.users.models import File
 from apps.classes import AllView, RemoveView, EditeView, CreateView
 
@@ -15,6 +15,18 @@ class EditCourseView(EditeView):
 
 class CreateCourseView(CreateView):
     model = CourseView 
+
+class AllCoursesVideosView(AllView):
+    model = CourseVideo
+
+class RemoveCoursesVideosView(RemoveView):
+    model = CourseVideo
+
+class EditCoursesVideosView(EditeView):
+    model = CourseVideo
+
+class CreateCoursesVideosView(CreateView):
+    model = CourseVideo
 
 class AllFileView(AllView):
     model = File 
