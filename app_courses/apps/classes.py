@@ -5,8 +5,17 @@ import json
 import datetime 
 from .errors import DosntFoundQueryset, DosntValidId, DosntValidParameters
 
-class AllView(web.View):
+class MixinClearQueryView(web.View):
     model = None 
+
+    def clear_query(self, q):
+        clear_query = {}
+        for key, value in q.to_dict().items():
+            clear_query[key] = value if type(value) in [int, bool, float, object, dict, list, str, type(None), set, tuple] else str(value)
+        return clear_query 
+    
+
+class AllView(MixinClearQueryView):
 
     async def post(self):
         data = await self.request.json()
@@ -18,61 +27,36 @@ class AllView(web.View):
         else :
             queryset = await self.model.query.gino.all()
         data = []
-        for q in queryset:
-            data.append(q.to_dict())
-        try:
-            return web.json_response({'data': data})
-        except:
-            data = []
-            dict_q = {}
-            for q in queryset:
-                for key in self.model.key_dict:
-                    dict_q[key] = getattr(q, key) if type(getattr(q, key)) not in [type(datetime.datetime.now())] else str(getattr(q, key))
-                data.append(dict_q)
-            return web.json_response({'data': data})
+        for query in queryset:
+            data.append(self.clear_query(query))
+        return web.json_response({'data': data})
 
-class CreateView(web.View):
-    model = None
+class CreateView(MixinClearQueryView):
 
     async def post(self,):
         data = await self.request.json()
         try:
             queryset = await self.model.create(**data)
-            try:
-                return web.json_response(queryset.to_dict())
-            except:
-                dict_q = {}
-                for key in self.model.key_dict:
-                    dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
-                return web.json_response(json.dumps(dict_q))
+            return web.json_response(self.clear_query(queryset))
         except:
             return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
 
-class RemoveView(web.View):
-    model = None 
+class RemoveView(MixinClearQueryView):
 
     async def post(self):
         id_queryset = await self.request.json()
         if id_queryset:
             try:
                 queryset = await self.model.get(id_queryset)
-                data_json = queryset.to_dict()
                 await queryset.delete()
-                try:
-                    return web.json_response(data_json)
-                except:
-                    dict_q = {}
-                    for key in self.model.key_dict:
-                        dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
-                    return web.json_response(json.dumps(dict_q))
+                return web.json_response(self.clear_query(queryset))
             except self.model.DoesNotExist:
                 return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
             return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
 
 
-class EditeView(web.View):
-    model = None 
+class EditeView(MixinClearQueryView):
 
     async def post(self,):
         data = await self.request.json()
@@ -82,13 +66,7 @@ class EditeView(web.View):
                 del data['id']
                 await self.model.update.values(**data).where(self.model.id == id_queryset).gino.status()                
                 queryset = await self.model.get(id_queryset)
-                try:
-                    return web.json_response(queryset.to_dict())
-                except:
-                    dict_q = {}
-                    for key in self.model.key_dict:
-                        dict_q[key] = getattr(queryset, key) if type(getattr(queryset, key)) not in [type(datetime.datetime.now())] else str(getattr(queryset, key))
-                    return web.json_response(json.dumps(dict_q))
+                return web.json_response(self.clear_query(queryset))
             except self.model.DoesNotExist:
                 return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
