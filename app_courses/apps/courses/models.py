@@ -13,7 +13,6 @@ class CourseView(db.Model):
     old_price = db.Column(db.Integer())
     data = db.Column(db.JSON())
 
-    key_dict = ['name_course', 'description', 'author_id', 'date', 'price', 'old_price', 'data']
 
 class CourseVideo(db.Model):
     __tablename__ = 'courses_video'
