@@ -4,7 +4,8 @@ from .views import (AllCoursesView, RemoveCourseView, EditCourseView, CreateCour
                     AllFileView, CreateFileView, RemoveFileView, EditFileView,
                     AllBoughtCoursesView,RemoveBoughtCoursesView,EditBoughtCoursesView,CreateBoughtCoursesView,
                     AllExerciseView,EditExerciseView,CreateExerciseView,RemoveExerciseView,
-                    AllTestAnswer, EditTestAnswer, RemoveTestAnswer, CreateTestAnswer)
+                    AllTestAnswer, EditTestAnswer, RemoveTestAnswer, CreateTestAnswer,
+                    AllCoursePackageView,RemoveCoursePackageView,EditCoursePackageView,CreateCoursePackageView,)
 
 
 urlpatterns = [
@@ -16,7 +17,12 @@ urlpatterns = [
     web.post('/coursesvideos', AllCoursesVideosView, name='all_courses_videos'),
     web.post('/coursesvideos/edit', EditCourseView, name="edit_course_videos"),
     web.post('/coursesvideos/remove', RemoveCourseView, name="remove_course_videos"),
-    web.post('/coucoursesvideosrses/create', CreateCourseView, name="create_course_videos"),
+    web.post('/coursesvideos/create', CreateCourseView, name="create_course_videos"),
+    
+    web.post('/coursepackage', AllCoursePackageView, name='all_course_package'),
+    web.post('/coursepackage/edit', EditCoursePackageView, name="edit_course_package"),
+    web.post('/coursepackage/remove', RemoveCoursePackageView, name="remove_course_package"),
+    web.post('/coursepackage/create', CreateCoursePackageView, name="create_course_package"),
     
     web.post('/files', AllFileView, name='all_files'),
     web.post('/files/edit', EditFileView, name='edit_file'),

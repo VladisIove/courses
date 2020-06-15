@@ -13,26 +13,30 @@
     },
     {
         "id": 4,
-        "command": "CREATE TABLE courses_view( id serial PRIMARY KEY, name_course VARCHAR(220), description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id));"
+        "command": "CREATE TABLE courses_packages(id serial PRIMARY KEY,type_course INTEGER, name_course VARCHAR(220), description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id));"
     },
     {
         "id": 5,
-        "command": "CREATE TABLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answer VARCHAR(1024));"
+        "command": "CREATE TABLE courses_view( id serial PRIMARY KEY, name_course VARCHAR(220),type_course INTEGER,package_id INTEGER, description VARCHAR(1024), author_id INTEGER, date timestamp NOT NULL DEFAULT NOW(), data JSON, price INTEGER, old_price INTEGER, FOREIGN KEY (author_id) REFERENCES users(id), FOREIGN KEY (package_id) REFERENCES courses_packages(id));"
     },
     {
         "id": 6,
+        "command": "CREATE TABLE faqs( id serial PRIMARY KEY, question VARCHAR(500), answer VARCHAR(1024));"
+    },
+    {
+        "id": 7,
         "command": "CREATE TABLE courses_video(id serial PRIMARY KEY, name  VARCHAR(220), description VARCHAR(1024),course_view_id INTEGER, video_id INTEGER, FOREIGN KEY (video_id) REFERENCES files(id), FOREIGN KEY (course_view_id) REFERENCES courses_view(id)); "
     },
     {
-        "id":7,
+        "id":8,
         "command": "CREATE TABLE bought_courses(id serial PRIMARY KEY, user_id INTEGER, course_id INTEGER, FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (course_id) REFERENCES courses_view(id));"
     },
     {
-        "id": 8,
+        "id": 9,
         "command": "CREATE TABLE exercises_view(id serial PRIMARY KEY, name VARCHAR(220), description VARCHAR(1024), type_exercise INTEGER, course_id INTEGER, FOREIGN KEY (course_id) REFERENCES courses_video(id));"
     },
     {
-        "id": 9,
+        "id": 10,
         "command": "CREATE TABLE test_answers(id serial PRIMARY KEY, text VARCHAR(1024), answer Boolean, exercise_view_id INTEGER, FOREIGN KEY (exercise_view_id) REFERENCES exercises_view(id));"
     }
 ]

@@ -1,8 +1,11 @@
 from apps.init_db import db
 
 
-class CourseView(db.Model):
-    __tablename__ = 'courses_view'
+class AbstractCourse():
+
+    class TYPE_COURSE:
+        PYTHON = 1
+        THREED_MAX = 2
 
     id = db.Column(db.Integer(), primary_key=True)
     name_course = db.Column(db.String())
@@ -11,7 +14,17 @@ class CourseView(db.Model):
     date = db.Column(db.DateTime())
     price = db.Column(db.Integer())
     old_price = db.Column(db.Integer())
+    type_course = db.Column(db.Integer())
     data = db.Column(db.JSON())
+
+class CoursePackage(db.Model, AbstractCourse):
+    __tablename__ = 'courses_packages'
+
+
+class CourseView(db.Model, AbstractCourse):
+    __tablename__ = 'courses_view'
+
+    package_id = db.Column(None, db.ForeignKey('courses_packages.id'), nullable=True)
 
 
 class CourseVideo(db.Model):

@@ -1,5 +1,7 @@
 from aiohttp import web
 from sqlalchemy.sql import text
+from email.message import EmailMessage
+import smtplib
 from aiohttp.abc import AbstractAccessLogger
 import json
 import datetime 
@@ -39,7 +41,7 @@ class CreateView(MixinClearQueryView):
             queryset = await self.model.create(**data)
             return web.json_response(self.clear_query(queryset))
         except:
-            return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
+            return web.json_response({'state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
 
 class RemoveView(MixinClearQueryView):
 
@@ -51,9 +53,9 @@ class RemoveView(MixinClearQueryView):
                 await queryset.delete()
                 return web.json_response(self.clear_query(queryset))
             except self.model.DoesNotExist:
-                return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
+                return web.json_response({'state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
-            return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
+            return web.json_response({'state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
 
 
 class EditeView(MixinClearQueryView):
@@ -68,6 +70,26 @@ class EditeView(MixinClearQueryView):
                 queryset = await self.model.get(id_queryset)
                 return web.json_response(self.clear_query(queryset))
             except self.model.DoesNotExist:
-                return web.json_response({'error_state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
+                return web.json_response({'state': DosntFoundQueryset.ERROR, 'description': DosntFoundQueryset.DESCRIPTION })
         else:
-            return web.json_response({'error_state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
+            return web.json_response({'state': DosntValidParameters.ERROR, 'description': DosntValidParameters.DESCRIPTION})
+
+
+class SendMessageOnEmail:
+    EMAIL_ADDRESS = None 
+    EMAIL_PASSWORD = None 
+    
+    def __init__(self,  subject, from_email_address=None, to_email_address=None):
+        self.subject = subject
+        self.from_email_address = from_email_address
+        self.to_email_address = to_email_address
+
+    def send_message(self):
+        msg = EmailMessage()
+        msg['Subject'] = subject 
+        msg['From'] = from_email_address  if from_email_address else self.EMAIL_ADDRESS
+        msg['To'] = to_email_address if to_email_address else self.EMAIL_ADDRESS
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(self.EMAIL_ADDRESS, self.EMAIL_PASSWORD)
+            smtp.send_message(msg)
